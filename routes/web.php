@@ -26,6 +26,8 @@ Route::get('/buku', 'BukuController@index');
 Route::get('/buku/create', 'BukuController@create')->name('buku.create');
 Route::post('/buku', 'BukuController@store')->name('buku.store');
 
+Route::get('/buku/search', 'BukuController@search')->name('buku.search');
+
 Route::get('/buku/{buku}', 'BukuController@show')->name('buku.show');
 
 Route::get('/buku/edit/{buku}', 'BukuController@edit')->name('buku.edit');

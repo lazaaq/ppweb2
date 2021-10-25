@@ -2,33 +2,13 @@
 
 @section('contents')
 <div class="container my-3">
-    @if (session()->has('success_added'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success_added') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-    @if (session()->has('success_updated'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success_updated') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-    @if (session()->has('success_deleted'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success_deleted') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-
-
     <div class="row my-5">
         <a href="/buku/create" class="btn btn-primary" style="width: fit-content;">Buat Buku Baru</a>
     </div>
 
     <div class="search">
         <form class="d-flex" type="search" action="{{route('buku.search')}}" method="get">
-            <input class="form-control me-2" name="search" id="search" placeholder="Search">
+            <input class="form-control me-2" name="search" id="search" value="{{$cari}}">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
     </div>
