@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,3 +43,14 @@ Route::post('/buku/{buku}', 'BukuController@update')->name('buku.update');
 Route::post('/buku/delete/{buku}', 'BukuController@delete')->name('buku.delete');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::middleware(['admin'])->group(function(){
+    // Route::resource('/users', UsersController::class);
+    Route::get('/users', [UsersController::class, 'index']);
+    Route::get('/users/create', [UsersController::class, 'create']);
+    Route::get('/users/{user}', [UsersController::class, 'show']);
+    Route::get('/users/{user}/edit', [UsersController::class, 'edit']);
+    Route::post('/users/store', [UsersController::class, 'store']);
+    Route::put('/users/{user}/update', [UsersController::class, 'update']);
+});

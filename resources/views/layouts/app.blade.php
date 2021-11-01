@@ -46,6 +46,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('buku') }}">Buku</a>
                         </li>
+                        @if(Auth::check() && Auth::user()->level == 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users">Users</a>
+                        </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
