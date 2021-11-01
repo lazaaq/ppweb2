@@ -1,6 +1,6 @@
-@extends('layout.main')
+@extends('layouts.app')
 
-@section('contents')
+@section('content')
 <div class="container my-3">
     @if (session()->has('success_added'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -20,7 +20,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
-
 
     <div class="row my-5">
         <a href="/buku/create" class="btn btn-primary" style="width: fit-content;">Buat Buku Baru</a>

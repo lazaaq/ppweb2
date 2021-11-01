@@ -1,6 +1,6 @@
-@extends('layout.main')
+@extends('layouts.app')
 
-@section('contents')
+@section('content')
 <div class="container my-3">
     <div class="row my-5">
         <a href="/buku/create" class="btn btn-primary" style="width: fit-content;">Buat Buku Baru</a>

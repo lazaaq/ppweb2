@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 @endsection
 
-@section('contents')
+@section('content')
 <div class="d-flex align-items-center mt-5">
     <div class="container">
         <h1>CREATE</h1>
