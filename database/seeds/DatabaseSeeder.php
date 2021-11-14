@@ -1,5 +1,6 @@
 <?php
 
+use App\Buku;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -24,6 +25,13 @@ class DatabaseSeeder extends Seeder
             'name' => "lana saiful aqil",
             'email' => 'user@gmail.com',
             'password' => bcrypt('password')
+        ]);
+
+        Buku::create([
+            'judul' => 'Contoh Judul',
+            'penulis' => 'Contoh Penulis',
+            'harga' => '120000',
+            'tgl_terbit' => '2002/04/11',
         ]);
     }
 }

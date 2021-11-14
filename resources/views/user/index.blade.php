@@ -79,7 +79,7 @@
             <td>
                 <a href="/users/{{$user->id}}" class="btn btn-success">Lihat</a>
                 <a href="/users/{{$user->id}}/edit" class="btn btn-warning">Edit</a>
-                <a href="/users/{{$user->id}}/destroy" class="btn btn-danger">Hapus</a>
+                <form action="/users"></form>
             </td>
         </tr>
         @endforeach

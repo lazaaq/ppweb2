@@ -54,3 +54,6 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/users/store', [UsersController::class, 'store']);
     Route::put('/users/{user}/update', [UsersController::class, 'update']);
 });
+
+//galeri
+Route::resource('/galeri', 'GaleriController');
