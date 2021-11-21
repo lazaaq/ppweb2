@@ -1,31 +1,34 @@
 @extends('layouts.app')
 
+@section('css')
+<style>
+    html,
+    body {
+        color: #636b6f;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 200;
+        height: 100vh;
+        margin: 0;
+    }
+</style>
+@endsection
+
 @section('content')
 <div class="container my-3">
-    @if (session()->has('success_added'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success_added') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-    @if (session()->has('success_updated'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success_updated') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-    @if (session()->has('success_deleted'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success_deleted') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    @if (session()->has('success'))
+    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+        <span class="">{{ session('success') }}</span>
+        <button type="button" class="btn-close ml-auto d-block" data-bs-dismiss="alert" aria-label="Close" style="border:0; border-radius:4px;background-color:white;">X</button>
     </div>
     @endif
 
-    <div class="row my-5">
+    <h1>Galeri</h1>
+
+    <div class="mt-3 text-right">
         <a href="/galeri/create" class="btn btn-primary" style="width: fit-content;">Buat Galeri Baru</a>
     </div>
-
-    <table class="table table-stripped">
+ 
+    <table class="table table-stripped table-hover mt-3">
         <thead>
             <tr>
                 <th>Id</th>
@@ -43,13 +46,13 @@
                 <td>{{ $data->bukus->judul }}</td>
                 <td>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{ 'gambar' . $data->id }}">
+                    <button type="button" class="btn btn-info text-light" data-bs-toggle="modal" data-bs-target="#{{ 'gambar' . $data->id }}">
                         Lihat
                     </button>
                     
                     <!-- Modal -->
                     <div class="modal fade" id="{{ 'gambar' . $data->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">{{ $data->nama_galeri }}</h5>
@@ -65,11 +68,18 @@
                     </div>
                 </td>
                 <td class="d-flex">
-                    <a href="{{ route('galeri.edit', $data->id) }}" class="btn btn-warning me-3">Edit</a>
+                    <a href="{{ route('galeri.show', $data->id) }}" class="btn btn-info text-light mr-2">
+                        <i class="bi bi-eye"></i>
+                    </a>
+                    <a href="{{ route('galeri.edit', $data->id) }}" class="btn btn-warning mr-2">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
                     <form action="{{ route('galeri.destroy', $data->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger me-3">Delete</button>
+                        <button type="submit" class="btn btn-danger me-3">
+                            <i class="bi bi-trash"></i>
+                        </button>
                     </form>
                 </td>
             </tr>

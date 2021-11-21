@@ -10,47 +10,56 @@
 @section('content')
 <div class="d-flex align-items-center mt-5">
     <div class="container">
-        <h1>CREATE</h1>
-        <form action="/buku" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label for="judul" class="form-label">Judul</label>
-                <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul">
-                @error('judul')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
+        <div class="card card-primary">
+            <form action="/buku" method="POST">
+            <div class="card-header bg-primary text-light">
+                Tambah Buku
             </div>
-            <div class="mb-3">
-                <label for="penulis" class="form-label">Penulis</label>
-                <input type="text" class="form-control @error('penulis') is-invalid @enderror" id="penulis" name="penulis">
-                @error('penulis')
-                <div class="invalid-feedback">
-                    {{ $message }}
+            <div class="card-body">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="judul" class="form-label">Judul</label>
+                        <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" placeholder="Judul Buku">
+                        @error('judul')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="penulis" class="form-label">Penulis</label>
+                        <input type="text" class="form-control @error('penulis') is-invalid @enderror" id="penulis" name="penulis" placeholder="Penulis Buku">
+                        @error('penulis')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="harga" class="form-label">Harga</label>
+                        <input type="number" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" placeholder="Harga Buku">
+                        @error('harga')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="tgl_terbit" class="form-label">Tanggal Terbit</label>
+                        <input type="text" class="date form-control @error('tgl_terbit') is-invalid @enderror" id="tgl_terbit" name="tgl_terbit" placeholder="yyyy/mm/dd">
+                        @error('tgl_terbit')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
                 </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="harga" class="form-label">Harga</label>
-                <input type="number" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga">
-                @error('harga')
-                <div class="invalid-feedback">
-                    {{ $message }}
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="tgl_terbit" class="form-label">Tanggal Terbit</label>
-                <input type="text" class="date form-control @error('tgl_terbit') is-invalid @enderror" id="tgl_terbit" name="tgl_terbit" placeholder="yyyy/mm/dd">
-                @error('tgl_terbit')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+            </form>
+        </div>
+        
     </div>
 </div>
 @endsection

@@ -41,7 +41,7 @@ class BukuController extends Controller
 
         Buku::create($validatedData);
 
-        return redirect('/buku')->with('success_added', 'Data Buku berhasil ditambah!');
+        return redirect('/buku')->with('success', 'Data Buku berhasil ditambah!');
     }
 
     public function show(Buku $buku)
@@ -70,13 +70,13 @@ class BukuController extends Controller
 
         $buku->update($validatedData);
 
-        return redirect('/buku')->with('success_updated', 'Data berhasil diubah!');
+        return redirect('/buku')->with('success', 'Data berhasil diubah!');
     }
 
     public function delete(Buku $buku)
     {
         $buku->delete();
-        return redirect('/buku')->with('success_deleted', 'Data berhasil dihapus!');
+        return redirect('/buku')->with('success', 'Data berhasil dihapus!');
     }
 
     public function search(Request $request)

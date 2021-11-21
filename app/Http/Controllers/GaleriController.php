@@ -65,7 +65,7 @@ class GaleriController extends Controller
         $galeri->foto = $file->move($folder_tujuan, $filename);
 
         $galeri->save();
-        return redirect('/galeri')->with('pesan', 'Data Galeri Buku berhasil disimpan');
+        return redirect('/galeri')->with('success', 'Data Galeri Buku berhasil disimpan');
     }
 
     /**
@@ -125,7 +125,7 @@ class GaleriController extends Controller
             'keterangan' => $request->keterangan,
             'galeri_seo' => Str::of($request->nama_galeri)->slug('-')
         ]);
-        return redirect('/galeri')->with('pesan', 'Data Galeri Buku berhasil disimpan');
+        return redirect('/galeri')->with('success', 'Data Galeri Buku berhasil disimpan');
     }
 
     /**
@@ -139,6 +139,6 @@ class GaleriController extends Controller
         $galeri = Galeri::find($id);
         File::delete($galeri->foto);
         $galeri->delete();
-        return redirect('/galeri')->with('pesan', 'Galeri berhasil dihapus!');
+        return redirect('/galeri')->with('success', 'Galeri berhasil dihapus!');
     }
 }

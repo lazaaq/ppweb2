@@ -1,38 +1,41 @@
 @extends('layouts.app')
 
+@section('css')
+<style>
+    html,
+    body {
+    color: #636b6f;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    height: 100vh;
+    margin: 0;
+}
+</style>
+@endsection
+
 @section('content')
 <div class="container my-3">
-    @if (session()->has('success_added'))
+    @if (session()->has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success_added') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-    @if (session()->has('success_updated'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success_updated') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-    @if (session()->has('success_deleted'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success_deleted') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        {{ session('success') }}
+        <button type="button" class="btn-close ml-auto d-block" data-bs-dismiss="alert" aria-label="Close" style="border:0; border-radius:4px;background-color:white;">X</button>
     </div>
     @endif
 
-    <div class="row my-5">
+    <h1>Buku</h1>
+
+    <div class="mt-3 text-right">
         <a href="/buku/create" class="btn btn-primary" style="width: fit-content;">Buat Buku Baru</a>
     </div>
 
-    <div class="search">
+    <div class="search mt-3">
         <form class="d-flex" type="search" action="{{route('buku.search')}}" method="get">
             <input class="form-control me-2" name="search" id="search" placeholder="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
     </div>
 
-    <table class="table table-stripped">
+    <table class="table table-stripped mt-3">
         <thead>
             <tr>
                 <th>Id</th>
@@ -52,11 +55,17 @@
                 <td>{{ "Rp ".number_format($buku->harga, 0, ',', '.' ) }}</td>
                 <td>{{ $buku->tgl_terbit->format('d/m/Y') }}</td>
                 <td class="d-flex">
-                    <a href="/buku/{{$buku->id}}" class="btn btn-success me-3">Lihat</a>
-                    <a href="/buku/edit/{{$buku->id}}" class="btn btn-warning me-3">Edit</a>
+                    <a href="/buku/{{$buku->id}}" class="btn btn-info mr-2 text-light">
+                        <i class="bi bi-eye"></i>
+                    </a>
+                    <a href="/buku/edit/{{$buku->id}}" class="btn btn-warning mr-2">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
                     <form action="/buku/delete/{{$buku->id}}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-danger me-3">Delete</button>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-trash"></i>
+                        </button>
                     </form>
                 </td>
             </tr>

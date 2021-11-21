@@ -10,47 +10,57 @@
 @section('content')
 <div class="d-flex align-items-center mt-5">
     <div class="container">
-        <h1>EDIT</h1>
-        <form action="/buku/{{$buku->id}}" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label for="judul" class="form-label">Judul</label>
-                <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" value="{{ $buku->judul }}">
-                @error('judul')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
+        <div class="card">
+            <form action="/buku/{{$buku->id}}" method="POST">
+            <div class="card-header bg-primary text-light">
+                Edit Buku
             </div>
-            <div class="mb-3">
-                <label for="penulis" class="form-label">Penulis</label>
-                <input type="text" class="form-control @error('penulis') is-invalid @enderror" id="penulis" name="penulis" value="{{ $buku->penulis }}">
-                @error('penulis')
-                <div class="invalid-feedback">
-                    {{ $message }}
+            <div class="card-body">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="judul" class="form-label">Judul</label>
+                        <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" value="{{ $buku->judul }}" placeholder="Judul Buku">
+                        @error('judul')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="penulis" class="form-label">Penulis</label>
+                        <input type="text" class="form-control @error('penulis') is-invalid @enderror" id="penulis" name="penulis" value="{{ $buku->penulis }}" placeholder="Penulis Buku">
+                        @error('penulis')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="harga" class="form-label">Harga</label>
+                        <input type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ $buku->harga }}" placeholder="Harga Buku">
+                        @error('harga')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="tgl_terbit" class="form-label">Tanggal Terbit</label>
+                        <input type="text" class="date form-control @error('tgl_terbit') is-invalid @enderror" id="tgl_terbit" name="tgl_terbit" value="{{ $buku->tgl_terbit }}">
+                        @error('tgl_terbit')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
                 </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="harga" class="form-label">Harga</label>
-                <input type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ $buku->harga }}">
-                @error('harga')
-                <div class="invalid-feedback">
-                    {{ $message }}
+                <div class="card-footer">
+                    <a href="/buku" class="btn btn-danger">Batal</a>        
+                    <button type="submit" class="btn btn-primary">Submit</button>        
                 </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="tgl_terbit" class="form-label">Tanggal Terbit</label>
-                <input type="text" class="date form-control @error('tgl_terbit') is-invalid @enderror" id="tgl_terbit" name="tgl_terbit" value="{{ $buku->tgl_terbit }}">
-                @error('tgl_terbit')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+            </form>
+        </div>
+        
     </div>
 </div>
 @endsection

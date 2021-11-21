@@ -6,7 +6,6 @@
 <style>
     html,
     body {
-        background-color: #fff;
         color: #636b6f;
         font-family: 'Nunito', sans-serif;
         font-weight: 200;
@@ -61,8 +60,10 @@
 @section('content')
 <div class="container">
     <h1>Users</h1>
-    <a href="/users/create" class="btn btn-primary">Buat User</a>
-    <table class="table table-hover mt-5">
+    <div class="tambah text-right">
+        <a href="/users/create" class="btn btn-primary">Buat User</a>
+    </div>
+    <table class="table table-hover mt-3">
         <tr>
             <th>Id</th>
             <th>Name</th>
@@ -77,9 +78,19 @@
             <td>{{$user->email}}</td>
             <td>{{$user->level}}</td>
             <td>
-                <a href="/users/{{$user->id}}" class="btn btn-success">Lihat</a>
-                <a href="/users/{{$user->id}}/edit" class="btn btn-warning">Edit</a>
-                <form action="/users"></form>
+                <a href="/users/{{$user->id}}" class="btn btn-info text-light">
+                    <i class="bi bi-eye"></i>
+                </a>
+                <a href="/users/{{$user->id}}/edit" class="btn btn-warning">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <form action="/users" class="d-inline-block">
+                    @csrf 
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </form>
             </td>
         </tr>
         @endforeach
