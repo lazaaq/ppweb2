@@ -27,6 +27,7 @@
             </div>
             <div class="card-footer">
                 <a href="{{ route('buku') }}" class="btn btn-primary">Kembali</a>
+                <a href="/detail-buku/{{ $buku->buku_seo }}" class="btn btn-info text-light">Lihat Galeri</a>
             </div>
         </div>
         

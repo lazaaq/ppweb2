@@ -38,13 +38,14 @@ Route::get('/buku/search', 'BukuController@search')->name('buku.search');
 Route::get('/buku/{buku}', 'BukuController@show')->name('buku.show');
 
 Route::get('/buku/edit/{buku}', 'BukuController@edit')->name('buku.edit');
-Route::post('/buku/{buku}', 'BukuController@update')->name('buku.update');
+Route::put('/buku/{buku}', 'BukuController@update')->name('buku.update');
 
 Route::post('/buku/delete/{buku}', 'BukuController@delete')->name('buku.delete');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/detail-buku/{judul}', 'BukuController@galbuku')->name('galeri.buku');
+Route::get('/detail-buku', 'BukuController@buku')->name('buku.detail');
+Route::get('/detail-buku/{title}', 'BukuController@galbuku')->name('buku.galeri');
 
 
 Route::middleware(['admin'])->group(function(){

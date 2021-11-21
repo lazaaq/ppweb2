@@ -11,7 +11,7 @@
 <div class="d-flex align-items-center mt-5">
     <div class="container">
         <div class="card card-primary">
-            <form action="/buku" method="POST">
+            <form action="/buku" method="POST" enctype="multipart/form-data">
             <div class="card-header bg-primary text-light">
                 Tambah Buku
             </div>
@@ -21,6 +21,15 @@
                         <label for="judul" class="form-label">Judul</label>
                         <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" placeholder="Judul Buku">
                         @error('judul')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="buku_seo" class="form-label">Buku SEO</label>
+                        <input type="text" class="form-control @error('buku_seo') is-invalid @enderror" id="buku_seo" name="buku_seo" placeholder="Buku SEO">
+                        @error('buku_seo')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -48,6 +57,15 @@
                         <label for="tgl_terbit" class="form-label">Tanggal Terbit</label>
                         <input type="text" class="date form-control @error('tgl_terbit') is-invalid @enderror" id="tgl_terbit" name="tgl_terbit" placeholder="yyyy/mm/dd">
                         @error('tgl_terbit')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="foto" class="form-label">Foto Buku</label>
+                        <input type="file" class="form-control @error('foto') is-invalid @enderror" id="foto" name="foto" placeholder="Foto Buku">
+                        @error('foto')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

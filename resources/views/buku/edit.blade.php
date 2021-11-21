@@ -11,12 +11,13 @@
 <div class="d-flex align-items-center mt-5">
     <div class="container">
         <div class="card">
-            <form action="/buku/{{$buku->id}}" method="POST">
-            <div class="card-header bg-primary text-light">
-                Edit Buku
-            </div>
-            <div class="card-body">
-                    @csrf
+            <form action="/buku/{{$buku->id}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="card-header bg-primary text-light">
+                    Edit Buku
+                </div>
+                <div class="card-body">
                     <div class="mb-3">
                         <label for="judul" class="form-label">Judul</label>
                         <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" value="{{ $buku->judul }}" placeholder="Judul Buku">
@@ -48,6 +49,16 @@
                         <label for="tgl_terbit" class="form-label">Tanggal Terbit</label>
                         <input type="text" class="date form-control @error('tgl_terbit') is-invalid @enderror" id="tgl_terbit" name="tgl_terbit" value="{{ $buku->tgl_terbit }}">
                         @error('tgl_terbit')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="foto" class="form-label">Foto Buku</label>
+                        <img src="{{ asset($buku->foto) }}" alt="{{ $buku->judul }}" width="500px" class="d-block">
+                        <input type="file" class="form-control @error('foto') is-invalid @enderror" id="foto" name="foto" placeholder="Foto Buku">
+                        @error('foto')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Buku;
 use App\Galeri;
+use Illuminate\Support\Facades\File;
 
 class BukuController extends Controller
 {
@@ -37,8 +38,15 @@ class BukuController extends Controller
                 'penulis' => 'required|string',
                 'harga' => 'required|numeric',
                 'tgl_terbit' => 'required|date',
+                'buku_seo' => 'required|string',
+                'foto' => 'required'
             ]
         );
+
+        $file = $request->file('foto');
+        $folder_tujuan = 'thumb';
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $validatedData['foto'] = $file->move($folder_tujuan, $filename);
 
         Buku::create($validatedData);
 
@@ -69,6 +77,17 @@ class BukuController extends Controller
             'tgl_terbit' => 'required',
         ]);
 
+        if($request->hasFile('foto')){
+            $file = $request->file('foto');
+            $folder_tujuan = 'thumb';
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $filepath = $file->move($folder_tujuan, $filename);
+            File::delete($buku->foto);
+            $buku->update([
+                'foto' => $filepath
+            ]);
+        }
+
         $buku->update($validatedData);
 
         return redirect('/buku')->with('success', 'Data berhasil diubah!');
@@ -90,9 +109,16 @@ class BukuController extends Controller
         return view('buku.search', compact('banyak_buku', 'data_buku', 'no', 'cari'));
     }
 
-    public function galbuku($judul)
+    public function buku()
     {
-        $bukus = Buku::where('buku_seo', $judul)->first();
+        return view('buku.buku', [
+            'bukus' => Buku::paginate(12)
+        ]);
+    }
+
+    public function galbuku($title)
+    {
+        $bukus = Buku::where('buku_seo', $title)->first();
         $galeris = $bukus->photos()->orderBy('id', 'desc')->paginate(6);
         return view('buku.galeri', compact('bukus', 'galeris'));
     }

@@ -23,6 +23,9 @@
     {{-- Bootstrap Icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 
+    {{-- Lightbox --}}
+    <link href="{{ asset('dist/css/lightbox.min.css') }}" rel="stylesheet">
+
     @yield('css')
 </head>
 
@@ -98,6 +101,9 @@
             @yield('content')
         </main>
     </div>
+
+    {{-- Lightbox --}}
+    <script src="{{ asset('dist/js/lightbox-plus-jquery.min.js') }}"></script>
     @yield('js')
 </body>
 
