@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Buku;
+use App\Galeri;
 
 class BukuController extends Controller
 {
@@ -87,5 +88,12 @@ class BukuController extends Controller
         $banyak_buku = $data_buku->count();
         $no = ($data_buku->currentPage() - 1);
         return view('buku.search', compact('banyak_buku', 'data_buku', 'no', 'cari'));
+    }
+
+    public function galbuku($judul)
+    {
+        $bukus = Buku::where('buku_seo', $judul)->first();
+        $galeris = $bukus->photos()->orderBy('id', 'desc')->paginate(6);
+        return view('buku.galeri', compact('bukus', 'galeris'));
     }
 }

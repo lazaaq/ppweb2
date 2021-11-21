@@ -60,42 +60,55 @@
 
 @section('content')
 <div class="container">
-    <h1>Detail User</h1>
-    <div class="row mb-3">
-        <div class="col-2">
-            Id
+    <div class="card">
+        <div class="card-header">
+            Detail User
         </div>
-        <div class="col-10">
-            {{ $user->id }}
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-5 col-md-2">
+                    Id
+                </div>
+                <div class="col-7 col-md-10">
+                    {{ $user->id }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-5 col-md-2">
+                    Name
+                </div>
+                <div class="col-7 col-md-10">
+                    {{ $user->name }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-5 col-md-2">
+                    Email
+                </div>
+                <div class="col-7 col-md-10">
+                    {{ $user->email }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-5 col-md-2">
+                    Level
+                </div>
+                <div class="col-7 col-md-10">
+                    {{ $user->level }}
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="row mb-3">
-        <div class="col-2">
-            Name
+        <div class="card-footer">
+            <a href="{{ route('user.index') }}" class="btn btn-primary">
+                <i class="bi bi-arrow-left"></i>
+            </a>
+            <a href="#" class="btn btn-warning">
+                <i class="bi bi-pencil-square"></i>
+            </a>
+            <a href="#" class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+            </a>
         </div>
-        <div class="col-10">
-            {{ $user->name }}
-        </div>
-    </div>
-    <div class="row mb-3">
-        <div class="col-2">
-            Email
-        </div>
-        <div class="col-10">
-            {{ $user->email }}
-        </div>
-    </div>
-    <div class="row mb-3">
-        <div class="col-2">
-            Level
-        </div>
-        <div class="col-10">
-            {{ $user->level }}
-        </div>
-    </div>
-    <div class="row mb-3">
-        <a href="#" class="btn btn-warning">Edit</a>
-        <a href="#" class="btn btn-danger">Hapus</a>
     </div>
 </div>
 @endsection

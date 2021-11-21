@@ -16,8 +16,8 @@
 @section('content')
 <div class="container my-3">
     @if (session()->has('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
+    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+        <span class="">{{ session('success') }}</span>
         <button type="button" class="btn-close ml-auto d-block" data-bs-dismiss="alert" aria-label="Close" style="border:0; border-radius:4px;background-color:white;">X</button>
     </div>
     @endif

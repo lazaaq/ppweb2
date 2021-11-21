@@ -71,9 +71,12 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('user.edit', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -83,9 +86,16 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'email' => 'required',
+            'name' => 'required',
+            'level' => 'required'
+        ]);
+        $user = User::find($id);
+        $user->update($validated);
+        return redirect('/users')->with('success', 'Data user berhasil diubah');
     }
 
     /**
@@ -94,8 +104,10 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/users')->with('success', 'User berhasil dihapus');
     }
 }

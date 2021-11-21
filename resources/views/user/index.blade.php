@@ -59,7 +59,15 @@
 
 @section('content')
 <div class="container">
+    @if (session()->has('success'))
+    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+        <span class="">{{ session('success') }}</span>
+        <button type="button" class="btn-close ml-auto d-block" data-bs-dismiss="alert" aria-label="Close" style="border:0; border-radius:4px;background-color:white;">X</button>
+    </div>
+    @endif
+
     <h1>Users</h1>
+
     <div class="tambah text-right">
         <a href="/users/create" class="btn btn-primary">Buat User</a>
     </div>
@@ -84,7 +92,7 @@
                 <a href="/users/{{$user->id}}/edit" class="btn btn-warning">
                     <i class="bi bi-pencil-square"></i>
                 </a>
-                <form action="/users" class="d-inline-block">
+                <form action="/users/{{ $user->id }}" method="POST" class="d-inline-block">
                     @csrf 
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">

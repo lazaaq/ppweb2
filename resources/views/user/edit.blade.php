@@ -61,39 +61,38 @@
 @section('content')
 <div class="container">
     <div class="card">
-        <form action="/users/store" method="post">
-        <div class="card-header bg-primary text-light">
-            Buat User
-        </div>
-        <div class="card-body">
-                @csrf
+        <form action="/users/{{ $user->id }}/update" method="post">
+            @csrf
+            @method('PUT')
+            <div class="card-header bg-primary text-light">
+                Edit User
+            </div>
+            <div class="card-body">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ $user->email }}">
                 </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ $user->name }}">
                 </div>
+                @if($user->level == 'user')
                 <div class="mb-3">
                     <label for="level" class="form-label">Level</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="level" id="level1" value="admin">
+                        <input class="form-check-input" type="radio" name="level" id="level1" value="admin" @if($user->level == 'admin') checked @endif>
                         <label class="form-check-label" for="level1">
                             Admin
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="level" id="level2" value="user" checked>
+                        <input class="form-check-input" type="radio" name="level" id="level2" value="user" @if($user->level == 'user') checked @endif>
                         <label class="form-check-label" for="level2">
                             User
                         </label>
                     </div>
                 </div>
+                @endif
             </div>
             <div class="card-footer">
                 <div class="mb-3">
@@ -103,6 +102,5 @@
             </div>
         </form>
     </div>
-
 </div>
 @endsection

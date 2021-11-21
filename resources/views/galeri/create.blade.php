@@ -10,55 +10,63 @@
 @section('content')
 <div class="d-flex align-items-center mt-5">
     <div class="container">
-        <h1>CREATE</h1>
-        <form action="{{ route('galeri.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="mb-3">
-                <label for="nama_galeri" class="form-label">Judul</label>
-                <input type="text" name="nama_galeri" id="name_galeri" class="form-control">
-                @error('nama_galeri')
-                <div class="invalid-feedback">
-                    {{ $message }}
+        <div class="card">
+            <form action="{{ route('galeri.store') }}" method="POST" enctype="multipart/form-data">
+            <div class="card-header bg-primary text-light">
+                Buat Galeri
+            </div>
+            <div class="card-body">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="nama_galeri" class="form-label">Judul</label>
+                        <input type="text" name="nama_galeri" id="name_galeri" class="form-control" placeholder="Judul Galeri" value="{{ old('nama_galeri') }}">
+                        @error('nama_galeri')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_buku" class="form-label">Buku</label>
+                        <select name="id_buku" id="id_buku" class="form-control">
+                            <option value="" selected>Pilih Buku</option>
+                            @foreach ($buku as $data)
+                                <option value="{{ $data->id }}">{{ $data->judul }}</option>                        
+                            @endforeach
+                        </select>
+                        @error('id_buku')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="keterangan" class="form-label">Keterangan</label>
+                        <textarea class="form-control @error('keterangan') is-invalid @enderror" id="keterangan" name="keterangan" placeholder="Keterangan Galeri">{{ old('keterangan') }}</textarea>
+                        @error('keterangan')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="foto" class="form-label">Upload Foto</label>
+                        <input type="file" class="form-control @error('foto') is-invalid @enderror" id="foto" name="foto" value="{{ old('foto') }}">
+                        @error('foto')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
                 </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="id_buku" class="form-label">Buku</label>
-                <select name="id_buku" id="id_buku" class="form-control">
-                    <option value="" selected>Pilih Buku</option>
-                    @foreach ($buku as $data)
-                        <option value="{{ $data->id }}">{{ $data->judul }}</option>                        
-                    @endforeach
-                </select>
-                @error('id_buku')
-                <div class="invalid-feedback">
-                    {{ $message }}
+                <div class="card-footer">
+                    <div class="">
+                        <a href="/galeri" class="btn btn-danger">Batal</a>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>      
                 </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="keterangan" class="form-label">Keterangan</label>
-                <textarea class="form-control @error('keterangan') is-invalid @enderror" id="keterangan" name="keterangan"></textarea>
-                @error('keterangan')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="foto" class="form-label">Upload Foto</label>
-                <input type="file" class="form-control @error('foto') is-invalid @enderror" id="foto" name="foto">
-                @error('foto')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="/galeri" class="btn btn-danger">Batal</a>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 @endsection

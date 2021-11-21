@@ -44,16 +44,18 @@ Route::post('/buku/delete/{buku}', 'BukuController@delete')->name('buku.delete')
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/detail-buku/{judul}', 'BukuController@galbuku')->name('galeri.buku');
+
 
 Route::middleware(['admin'])->group(function(){
     // Route::resource('/users', UsersController::class);
-    Route::get('/users', [UsersController::class, 'index']);
-    Route::get('/users/create', [UsersController::class, 'create']);
+    Route::get('/users', [UsersController::class, 'index'])->name('user.index');
+    Route::get('/users/create', [UsersController::class, 'create'])->name('user.create');
     Route::get('/users/{user}', [UsersController::class, 'show']);
     Route::get('/users/{user}/edit', [UsersController::class, 'edit']);
-    Route::post('/users/store', [UsersController::class, 'store']);
+    Route::post('/users/store', [UsersController::class, 'store'])->name('user.store');
     Route::put('/users/{user}/update', [UsersController::class, 'update']);
+    Route::delete('/users/{user}', [UsersController::class, 'destroy']);
+    //galeri
+    Route::resource('/galeri', 'GaleriController');
 });
-
-//galeri
-Route::resource('/galeri', 'GaleriController');
