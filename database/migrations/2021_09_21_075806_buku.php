@@ -16,6 +16,8 @@ class Buku extends Migration
         Schema::create('buku', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
+            $table->string('buku_seo')->nullable();
+            $table->string('foto')->nullable();
             $table->string('penulis');
             $table->integer('harga');
             $table->date('tgl_terbit');
