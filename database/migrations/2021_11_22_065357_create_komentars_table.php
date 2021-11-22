@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Buku extends Migration
+class CreateKomentarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class Buku extends Migration
      */
     public function up()
     {
-        Schema::create('buku', function (Blueprint $table) {
+        Schema::create('komentars', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->string('buku_seo')->nullable();
-            $table->string('foto')->nullable();
-            $table->string('penulis');
-            $table->integer('harga');
-            $table->date('tgl_terbit');
-            $table->integer('suka');
+            $table->foreignId('user_id');
+            $table->foreignId('buku_id');
+            $table->text('komentar');
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ class Buku extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buku');
+        Schema::dropIfExists('komentars');
     }
 }

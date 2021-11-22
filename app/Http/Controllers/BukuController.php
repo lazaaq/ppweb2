@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Buku;
 use App\Galeri;
+use App\Komentar;
 use Illuminate\Support\Facades\File;
 
 class BukuController extends Controller
@@ -47,6 +48,7 @@ class BukuController extends Controller
         $folder_tujuan = 'thumb';
         $filename = time() . '_' . $file->getClientOriginalName();
         $validatedData['foto'] = $file->move($folder_tujuan, $filename);
+        $validatedData['suka'] = "0";
 
         Buku::create($validatedData);
 
@@ -112,14 +114,22 @@ class BukuController extends Controller
     public function buku()
     {
         return view('buku.buku', [
-            'bukus' => Buku::paginate(12)
+            'bukus' => Buku::paginate(12) 
         ]);
     }
 
     public function galbuku($title)
     {
-        $bukus = Buku::where('buku_seo', $title)->first();
-        $galeris = $bukus->photos()->orderBy('id', 'desc')->paginate(6);
-        return view('buku.galeri', compact('bukus', 'galeris'));
+        $buku = Buku::where('buku_seo', $title)->first();
+        $galeris = $buku->photos()->orderBy('id', 'desc')->paginate(6);
+        $komentars = Komentar::where('buku_id', $buku->id)->get();
+        return view('buku.galeri', compact('buku', 'galeris', 'komentars'));
+    }
+
+    public function suka(Request $request, $id)
+    {
+        $buku = Buku::find($id);
+        $buku->increment('suka');
+        return back();
     }
 }

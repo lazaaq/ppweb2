@@ -47,6 +47,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/detail-buku', 'BukuController@buku')->name('buku.detail');
 Route::get('/detail-buku/{title}', 'BukuController@galbuku')->name('buku.galeri');
 
+// like buku
+Route::get('/buku/{buku}/suka', 'BukuController@suka')->name('buku.suka');
+//komentar buku
+Route::post('/buku/{buku}/komentar', 'KomentarController@store');
 
 Route::middleware(['admin'])->group(function(){
     // Route::resource('/users', UsersController::class);
@@ -59,4 +63,5 @@ Route::middleware(['admin'])->group(function(){
     Route::delete('/users/{user}', [UsersController::class, 'destroy']);
     //galeri
     Route::resource('/galeri', 'GaleriController');
+    // Suka
 });

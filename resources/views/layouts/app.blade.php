@@ -50,7 +50,7 @@
                             <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('buku') }}">Buku</a>
+                            <a class="nav-link" href="{{ route('buku.detail') }}">Buku</a>
                         </li>
                         @if(Auth::check() && Auth::user()->level == 'admin')
                         <li class="nav-item">

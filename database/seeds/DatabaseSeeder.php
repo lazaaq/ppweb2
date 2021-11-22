@@ -34,7 +34,8 @@ class DatabaseSeeder extends Seeder
             'harga' => '120000',
             'tgl_terbit' => '2002/04/11',
             'buku_seo' => 'contoh-judul',
-            'foto' => null
+            'foto' => null,
+            'suka' => "0"
         ]);
 
         Galeri::create([

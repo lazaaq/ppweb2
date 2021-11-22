@@ -52,6 +52,17 @@
                         <i class="bi bi-trash"></i>
                     </button>
                     </form>
+                    {{-- <form action="{{ route('buku.suka') }}" method="post" class="d-inline-block">
+                        @csrf
+                        <button type="submit" class="btn">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                    </form> --}}
+                    <a href="/buku/{{ $buku->id }}/suka" class="btn btn-sm">
+                        <i class="bi bi-heart"></i>
+                        <span class="badge badge-light">{{ $buku->suka }}</span>
+                    </a>
+                    
                 </div>
             </div>    
         </div>

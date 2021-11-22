@@ -16,4 +16,9 @@ class Buku extends Model
     {
         return $this->hasMany('App\Galeri', 'id_buku', 'id');
     }
+
+    public function komentar()
+    {
+        return $this->hasMany('App\Komentar', 'buku_id', 'id');
+    }
 }
